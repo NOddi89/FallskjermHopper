@@ -2,6 +2,8 @@
 #define DIALOG_H
 
 #include <QDialog>
+#include <QGraphicsScene>
+#include <QGraphicsPixmapItem>
 
 namespace Ui {
 class Dialog;
@@ -17,6 +19,8 @@ public:
 
 private:
     Ui::Dialog *ui;
+    QGraphicsScene *scene;
+    QGraphicsPixmapItem *backgroundItem;
 };
 
 #endif // DIALOG_H

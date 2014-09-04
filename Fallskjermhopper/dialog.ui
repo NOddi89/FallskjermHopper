@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1024</width>
-    <height>768</height>
+    <height>955</height>
    </rect>
   </property>
   <property name="cursor">
@@ -21,8 +21,8 @@
     <rect>
      <x>220</x>
      <y>10</y>
-     <width>790</width>
-     <height>750</height>
+     <width>792</width>
+     <height>932</height>
     </rect>
    </property>
   </widget>
