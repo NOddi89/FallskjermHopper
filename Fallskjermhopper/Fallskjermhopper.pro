@@ -13,9 +13,17 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        dialog.cpp
+        dialog.cpp \
+    Physics/dragprojectile.cpp \
+    Physics/ode.cpp \
+    Physics/odesolver.cpp \
+    Physics/simpleprojectile.cpp
 
-HEADERS  += dialog.h
+HEADERS  += dialog.h \
+    Physics/dragprojectile.h \
+    Physics/ode.h \
+    Physics/odesolver.h \
+    Physics/simpleprojectile.h
 
 FORMS    += dialog.ui
 
