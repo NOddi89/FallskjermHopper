@@ -7,7 +7,8 @@ SOURCES += main.cpp \
     ode.cpp \
     odesolver.cpp \
     simpleprojectile.cpp \
-    dragprojectile.cpp
+    dragprojectile.cpp \
+    windprojectile.cpp
 
 RESOURCES += qml.qrc
 
@@ -22,4 +23,5 @@ HEADERS += \
     ode.h \
     odesolver.h \
     simpleprojectile.h \
-    dragprojectile.h
+    dragprojectile.h \
+    windprojectile.h

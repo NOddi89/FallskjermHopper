@@ -18,16 +18,20 @@ public:
     Q_INVOKABLE double getDensity() const { return density; }
     Q_INVOKABLE double getCd() const { return Cd; }
 
-    Q_INVOKABLE void updateLocationAndVelocity(double dt);
-    Q_INVOKABLE double *getRightHandSide(double s, double q[], double deltaQ[],
+    Q_INVOKABLE virtual void updateLocationAndVelocity(double dt);
+    Q_INVOKABLE virtual double *getRightHandSide(double s, double q[], double deltaQ[],
                              double ds, double qScale) override;
+    Q_INVOKABLE void setArea(double area);
+    Q_INVOKABLE void setCd(double Cd);
+protected:
+    double getDensityForAltitude(double altitude);
+
 private:
     double mass;
     double area;
     double density;
     double Cd;
 
-    double getDensityForAltitude(double altitude);
 
 signals:
 
