@@ -27,6 +27,14 @@ void DragProjectile::updateLocationAndVelocity(double dt)
     ODESolver::rungeKutta4(this, dt);
 }
 
+// The getRightHandSide() method returns the right-hand sides of the six first-order
+// projectile ODEs.
+// q[0] = vx = dxdt
+// q[1] = x
+// q[2] = vy = dydt
+// q[3] = y
+// q[4] = vz = dzdt
+// q[5] = z
 double *DragProjectile::getRightHandSide(double s, double q[], double deltaQ[],
                                          double ds, double qScale)
 {
@@ -50,7 +58,23 @@ double *DragProjectile::getRightHandSide(double s, double q[], double deltaQ[],
 
 
     // compute total drag force
+//    qDebug() << "getDensityForAltitude(getZ()): " << getDensityForAltitude(getZ());
+    qDebug() << "area: " << area;
+    qDebug() << "v: " << v;
+    qDebug() << "newQ[0]: " << newQ[0];
+    qDebug() << "newQ[1]: " << newQ[1];
+    qDebug() << "newQ[2]: " << newQ[2];
+    qDebug() << "newQ[3]: " << newQ[3];
+    qDebug() << "newQ[4]: " << newQ[4];
+    qDebug() << "newQ[5]: " << newQ[5];
+//    qDebug() << "ds: " << ds;
+//    qDebug() << "x: " << ds * vx;
+//    qDebug() << "z: " << ds * vz;
+//    qDebug() << "vx: " << vx;
+//    qDebug() << "vy: " << vy;
+//    qDebug() << "vz: " << vz;
     double Fd = 0.5 * getDensityForAltitude(getZ()) * area * Cd * v * v;
+    qDebug() << "Fd: " << Fd;
 
     // compute the right hand side of the six ODEs
     dQ[0] = -ds * Fd * vx/(mass * v);
@@ -61,6 +85,16 @@ double *DragProjectile::getRightHandSide(double s, double q[], double deltaQ[],
     dQ[5] = ds * vz;
 
     return dQ;
+}
+
+void DragProjectile::setArea(double area)
+{
+    this->area = area;
+}
+
+void DragProjectile::setCd(double Cd)
+{
+    this->Cd = Cd;
 }
 
 double DragProjectile::getDensityForAltitude(double altitude)

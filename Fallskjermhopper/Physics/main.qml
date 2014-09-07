@@ -7,48 +7,98 @@ Window {
     width: 360
     height: 360
 
-    SimpleProjectile {
-        id: bullet
+    Rectangle
+    {
+        id: chuteBtn
 
-        Component.onCompleted: bullet.initialize(5.0, 0.0, 4000.0, // x0, y0, z0
-                                                 40.0, 0.0, 0.0,
-                                                 // vx0, vy0, vz0
-                                                 0.0) // time0
+        width: 60
+        height: 18
+        anchors.top: parent.top
+        anchors.right: parent.right
+        border.color: "black"
+
+        Text {
+            id: caption
+            text: qsTr("open chute")
+            anchors.fill: parent
+        }
+
+        MouseArea
+        {
+            anchors.fill: parent
+            onClicked:
+            {
+                dragBullet.setArea(20.0);
+                dragBullet.setCd(1.4);
+                windBullet.setArea(20.0);
+                windBullet.setCd(1.4);
+            }
+        }
     }
+
+//    SimpleProjectile {
+//        id: bullet
+
+//        Component.onCompleted: bullet.initialize(
+//                                   5.0, 0.0, 4000.0,        // x0, y0, z0
+//                                   40.0, 0.0, 0.0,          // vx0, vy0, vz0
+//                                   0.0)                     // time
+//    }
 
     DragProjectile {
         id: dragBullet
 
-        Component.onCompleted: dragBullet.initialize(5.0, 0.0, 4000.0,
-                                                     // x0, y0, z0
-                                                     40.0, 0.0, 0.0,
-                                                     // vx0, vy0, vz0
-                                                     0.0, 30.0, 0.2,
-                                                     1.225, 0.44)
+        Component.onCompleted: dragBullet.initialize(
+                                   5.0, 0.0, 4000.0,        // x0, y0, z0
+                                   40.0, 0.0, 0.0,          // vx0, vy0, vz0
+                                   0.0,                     // time
+                                   80.0, 1.5, 1.225, 0.44)  // mass, area, density, Cd
     }
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            Qt.quit()
-        }
+    WindProjectile {
+        id: windBullet
+
+        Component.onCompleted: windBullet.initialize(
+                                   5.0, 0.0, 4000.0,        // x0, y0, z0
+                                   40.0, 0.0, 0.0,          // vx0, vy0, vz0
+                                   0.0,                     // time
+                                   80.0, 1.5, 1.225, 0.44,  // mass, area, density, Cd
+                                   -2.0, 0.0)              // windX, windY
     }
+
+
+
+//    MouseArea {
+//        anchors.fill: parent
+//        onClicked: {
+//            Qt.quit()
+//        }
+//    }
 
     Timer {
         interval: 100
         running: true
         repeat: true
         onTriggered: {
-            if (bullet.getZ() > 0)
-                bullet.updateLocationAndVelocity(0.5)
+//            if (bullet.getZ() > 0)
+//                bullet.updateLocationAndVelocity(0.5)
+
             if (dragBullet.getZ() > 0)
-                dragBullet.updateLocationAndVelocity(0.5)
+                dragBullet.updateLocationAndVelocity(0.1);
+
+            if (windBullet.getZ() > 0)
+                windBullet.updateLocationAndVelocity(0.1)
             else
                 running = false
-            console.log(bullet.getVelocity().toFixed(2) + "(" + bullet.getZ(
-                            ).toFixed(1) + ") " + dragBullet.getVelocity(
-                            ).toFixed(2) + "(" + dragBullet.getZ(
-                            ).toFixed(1) + ")")
+
+            console.log(
+//                        bullet.getVelocity().toFixed(2)
+//                        + "(" + bullet.getZ().toFixed(1)
+//                        + ") " +
+                        dragBullet.getVelocity().toFixed(2)
+                        + "(" + dragBullet.getZ().toFixed(1)
+                        + ") " + windBullet.getVelocity().toFixed(2)
+                        + "(" + windBullet.getZ().toFixed(1) + ")")
             drawing.requestPaint()
         }
     }
@@ -69,12 +119,16 @@ Window {
             var zScale = (360 / 4000)
 
             ctx.strokeStyle = "blue"
-            ctx.ellipse(bullet.getX() * xScale,
-                        -(bullet.getZ() - 4005) * zScale, 2, 2)
-            ctx.stroke()
+//            ctx.ellipse(bullet.getX() * xScale,
+//                        -(bullet.getZ() - 4005) * zScale, 2, 2)
+//            ctx.stroke()
 
             ctx.ellipse(dragBullet.getX() * xScale,
                         -(dragBullet.getZ() - 4005) * zScale, 2, 2)
+            ctx.stroke()
+
+            ctx.ellipse(windBullet.getX() * xScale,
+                        -(windBullet.getZ() - 4005) * zScale, 2, 2)
             ctx.stroke()
 
             // setup the fill
