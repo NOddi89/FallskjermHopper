@@ -1,6 +1,5 @@
 #include "odesolver.h"
 #include "ode.h"
-#include <QDebug>
 
 void ODESolver::rungeKutta4(ODE *ode, double ds)
 {
@@ -13,6 +12,7 @@ void ODESolver::rungeKutta4(ODE *ode, double ds)
     double *dq4 = new double[numEqns];
 
     dq1 = ode->getRightHandSide(s, q, q, ds, 0.0);
+<<<<<<< HEAD
     //qDebug() << "dq01: " << *dq1;
     dq2 = ode->getRightHandSide(s+0.5*ds, q, dq1, ds, 0.5);
     //qDebug() << "dq02: " << *dq2;
@@ -20,6 +20,11 @@ void ODESolver::rungeKutta4(ODE *ode, double ds)
     //qDebug() << "dq03: " << *dq3;
     dq4 = ode->getRightHandSide(s+ds, q, dq3, ds, 1.0);
     //qDebug() << "dq04: " << *dq4;
+=======
+    dq2 = ode->getRightHandSide(s+0.5*ds, q, dq1, ds, 0.5);
+    dq3 = ode->getRightHandSide(s+0.5*ds, q, dq2, ds, 0.5);
+    dq4 = ode->getRightHandSide(s+ds, q, dq3, ds, 1.0);
+>>>>>>> origin/master
 
     // Update the dependent and independent variable values
     // at the new dependent variable location and store the

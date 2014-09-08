@@ -58,23 +58,7 @@ double *DragProjectile::getRightHandSide(double s, double q[], double deltaQ[],
 
 
     // compute total drag force
-//    qDebug() << "getDensityForAltitude(getZ()): " << getDensityForAltitude(getZ());
-    qDebug() << "area: " << area;
-    qDebug() << "v: " << v;
-    qDebug() << "newQ[0]: " << newQ[0];
-    qDebug() << "newQ[1]: " << newQ[1];
-    qDebug() << "newQ[2]: " << newQ[2];
-    qDebug() << "newQ[3]: " << newQ[3];
-    qDebug() << "newQ[4]: " << newQ[4];
-    qDebug() << "newQ[5]: " << newQ[5];
-//    qDebug() << "ds: " << ds;
-//    qDebug() << "x: " << ds * vx;
-//    qDebug() << "z: " << ds * vz;
-//    qDebug() << "vx: " << vx;
-//    qDebug() << "vy: " << vy;
-//    qDebug() << "vz: " << vz;
     double Fd = 0.5 * getDensityForAltitude(getZ()) * area * Cd * v * v;
-    qDebug() << "Fd: " << Fd;
 
     // compute the right hand side of the six ODEs
     dQ[0] = -ds * Fd * vx/(mass * v);
@@ -104,7 +88,10 @@ double DragProjectile::getDensityForAltitude(double altitude)
     // Range of input to regression: 0 to 3048m
 
     double res = 4.226958907191e-09 * (altitude * altitude) - 1.1786444511242e-04 * altitude + 1.2248168626609;
+<<<<<<< HEAD
     //qDebug() << "density: " << res;
+=======
+>>>>>>> origin/master
     return res;
 }
 
