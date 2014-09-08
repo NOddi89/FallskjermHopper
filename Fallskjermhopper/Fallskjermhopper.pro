@@ -17,17 +17,22 @@ SOURCES += main.cpp\
     Physics/dragprojectile.cpp \
     Physics/ode.cpp \
     Physics/odesolver.cpp \
-    Physics/simpleprojectile.cpp
+    Physics/simpleprojectile.cpp \
+    Physics/windprojectile.cpp \
+    skydiver.cpp
 
 HEADERS  += dialog.h \
     Physics/dragprojectile.h \
     Physics/ode.h \
     Physics/odesolver.h \
-    Physics/simpleprojectile.h
+    Physics/simpleprojectile.h \
+    Physics/windprojectile.h \
+    skydiver.h
 
 FORMS    += dialog.ui
 
 RESOURCES += \
     fallskjermhopper.qrc
+
 
 

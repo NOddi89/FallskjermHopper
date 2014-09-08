@@ -4,6 +4,12 @@
 #include <QDialog>
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
+#include <QTimer>
+
+#include <skydiver.h>
+
+
+
 
 namespace Ui {
 class Dialog;
@@ -20,7 +26,15 @@ public:
 private:
     Ui::Dialog *ui;
     QGraphicsScene *scene;
+    QTimer *timer;
+
     QGraphicsPixmapItem *backgroundItem;
+    Skydiver *skydiver;
+   // WindProjectile *skydiver;
+
+    float skydiverStartXPos;
+    float skydiverStartAltitude;
+
 };
 
 #endif // DIALOG_H

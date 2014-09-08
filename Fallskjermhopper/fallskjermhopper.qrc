@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>Images/fallskjermhopper_bg.png</file>
+        <file>Images/fallskjermhopper_player_nopara.png</file>
     </qresource>
 </RCC>
