@@ -88,10 +88,7 @@ double DragProjectile::getDensityForAltitude(double altitude)
     // Range of input to regression: 0 to 3048m
 
     double res = 4.226958907191e-09 * (altitude * altitude) - 1.1786444511242e-04 * altitude + 1.2248168626609;
-<<<<<<< HEAD
-    //qDebug() << "density: " << res;
-=======
->>>>>>> origin/master
+
     return res;
 }
 
