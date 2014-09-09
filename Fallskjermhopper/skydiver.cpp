@@ -6,11 +6,12 @@ Skydiver::Skydiver(double xPos, double altitude, double mass, double area, QPixm
 {   
     flyTime = 0;
 
-    skydiverODE = new WindProjectile();
+    //skydiverODE = new WindProjectile();
+    skydiverODE = new SkydiverODE();
     skydiverODE->initialize(xPos, 0.0, altitude,        //x0, y0, z0
-                            40.0, 0.0, 0.0,             //vx0, vy0, vz0
+                            0.0, 0.0, 0.0,             //vx0, vy0, vz0
                             flyTime, mass, area,        //time, mass, area
-                            1.225, 0.44, 2.0, 0.0 );    //density, cd?, wind x, wind y
+                            1.225, 0.44, 0.0, 0.0 );    //density, cd, wind x, wind y
 
     this->setPixmap(QPixmap(":/Images/fallskjermhopper_player_nopara.png"));
     this->setScale(0.5);
@@ -27,6 +28,11 @@ void Skydiver::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     QRectF rect = boundingRect();
 
     painter->drawPixmap(rect, pixmap(), rect);
+}
+
+void Skydiver::setSwingVx(double value)
+{
+    skydiverODE->setSwingVx(value);
 }
 
 void Skydiver::advance(int phase)

@@ -16,6 +16,12 @@ public:
 
     Q_INVOKABLE virtual double *getRightHandSide(double s, double q[], double deltaQ[],
                              double ds, double qScale) override;
+    double getWindVx() const;
+    void setWindVx(double value);
+
+    double getWindVy() const;
+    void setWindVy(double value);
+
 private:
     double windVx;
     double windVy;

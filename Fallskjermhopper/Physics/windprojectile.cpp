@@ -65,3 +65,23 @@ double *WindProjectile::getRightHandSide(double s, double q[], double deltaQ[], 
 
     return dQ;
 }
+double WindProjectile::getWindVx() const
+{
+    return windVx;
+}
+
+void WindProjectile::setWindVx(double value)
+{
+    windVx = value;
+}
+double WindProjectile::getWindVy() const
+{
+    return windVy;
+}
+
+void WindProjectile::setWindVy(double value)
+{
+    windVy = value;
+}
+
+

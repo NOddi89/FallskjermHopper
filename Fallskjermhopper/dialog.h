@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 #include <QTimer>
+#include <QKeyEvent>
 
 #include <skydiver.h>
 
@@ -27,6 +28,7 @@ private:
     Ui::Dialog *ui;
     QGraphicsScene *scene;
     QTimer *timer;
+    QTimer *swingTimer;
 
     QGraphicsPixmapItem *backgroundItem;
     Skydiver *skydiver;
@@ -34,6 +36,13 @@ private:
 
     float skydiverStartXPos;
     float skydiverStartAltitude;
+    double swingVxValues[4];
+
+    bool keyDown;
+
+protected:
+    void keyPressEvent(QKeyEvent *event);
+    void keyReleaseEvent(QKeyEvent * event);
 
 };
 

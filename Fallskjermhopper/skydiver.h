@@ -3,6 +3,7 @@
 
 #include <QGraphicsPixmapItem>
 #include "Physics/windprojectile.h"
+#include "skydiverode.h"
 
 class Skydiver : public QGraphicsPixmapItem
 {
@@ -10,13 +11,15 @@ public:
     Skydiver(double xPos, double altitude, double mass, double area, QPixmap icon);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void setSwingVx(double value);
 
 protected:
     void advance(int phase);
 
 private:
     QPixmap icon;
-    WindProjectile *skydiverODE;
+    //WindProjectile *skydiverODE;
+    SkydiverODE *skydiverODE;
 
     double flyTime;
 };

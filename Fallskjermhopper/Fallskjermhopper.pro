@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     Physics/odesolver.cpp \
     Physics/simpleprojectile.cpp \
     Physics/windprojectile.cpp \
-    skydiver.cpp
+    skydiver.cpp \
+    skydiverode.cpp
 
 HEADERS  += dialog.h \
     Physics/dragprojectile.h \
@@ -27,7 +28,8 @@ HEADERS  += dialog.h \
     Physics/odesolver.h \
     Physics/simpleprojectile.h \
     Physics/windprojectile.h \
-    skydiver.h
+    skydiver.h \
+    skydiverode.h
 
 FORMS    += dialog.ui
 
