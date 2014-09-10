@@ -4,7 +4,7 @@
 
 SkydiverODE::SkydiverODE()
 {
-    swingVx = 0.0;
+    //swingVx = 0.0;
 }
 
 double *SkydiverODE::getRightHandSide(double s, double q[], double deltaQ[], double ds, double qScale)
@@ -25,7 +25,7 @@ double *SkydiverODE::getRightHandSide(double s, double q[], double deltaQ[], dou
     // Compute the apparent velocities by subtracting the wind velocity
     // components from the projectile velocity components. We also subtract a velocity
     // if the player try to compensate for wind.
-    double vax = vx - getWindVx() - swingVx;
+    double vax = vx - getWindVx() ;//- swingVx;
     double vay = vy - getWindVy();
     double vaz = vz;
 
@@ -37,25 +37,38 @@ double *SkydiverODE::getRightHandSide(double s, double q[], double deltaQ[], dou
 
     // compute total drag force
     double Fd = 0.5 * getDensityForAltitude(getZ()) * getArea() * getCd() * va * va;
+    double Fdx = -Fd * vax/va;
+    double Fdy = -Fd * vay/va;
+    double Fdz = -Fd * vaz/va;
 
     // compute the right hand side of the six ODEs
-    dQ[0] = -ds * Fd * vax/(getMass() * va);
+    dQ[0] = ds * (Fdx+swingForce) /getMass();
     dQ[1] = ds * vx;
-    dQ[2] = -ds * Fd * vay/(getMass() * va);
+    dQ[2] = ds * Fdy /getMass();
     dQ[3] = ds * vy;
-    dQ[4] = ds * (G - Fd * vaz/(getMass() * va));
+    dQ[4] = ds * (G + Fdz /getMass());
     dQ[5] = ds * vz;
 
     return dQ;
 }
-double SkydiverODE::getSwingVx() const
+double SkydiverODE::getSwingForce() const
 {
-    return swingVx;
+    return swingForce;
 }
 
-void SkydiverODE::setSwingVx(double value)
+void SkydiverODE::setSwingForce(double value)
 {
-    swingVx = value;
+    swingForce = value;
 }
+
+//double SkydiverODE::getSwingVx() const
+//{
+//    return swingVx;
+//}
+
+//void SkydiverODE::setSwingVx(double value)
+//{
+//    swingVx = value;
+//}
 
 

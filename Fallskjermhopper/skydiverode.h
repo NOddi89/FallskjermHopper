@@ -12,14 +12,18 @@ public:
                              double ds, double qScale) override;
 
 
-    double getSwingVx() const;
+//    double getSwingVx() const;
 
+
+    double getSwingForce() const;
+    void setSwingForce(double value);
 
 private:
-    double swingVx;
+    //    double swingVx;
+    double swingForce;
 
-public slots:
-    void setSwingVx(double value);
+    //public slots:
+//    void setSwingVx(double value);
 };
 
 #endif // SKYDIVERODE_H

@@ -47,12 +47,17 @@ Dialog::~Dialog()
 
 void Dialog::keyPressEvent(QKeyEvent *event)
 {
-    if( event->isAutoRepeat())
+    if(event->key() == Qt::Key_D)
     {
-        swingTimer->start();
-        keyDown = true;
-        qDebug() << "D is down";
+        skydiver->setSwingForce(1000);
     }
+
+    if(event->key() == Qt::Key_A)
+    {
+        skydiver->setSwingForce(-1000);
+    }
+
+    if(event->key() == Qt::Key_Space) skydiver->releaseParachute();
 
 }
 
@@ -60,6 +65,11 @@ void Dialog::keyReleaseEvent(QKeyEvent *event)
 {
     if(event->key() == Qt::Key_D)
     {
-        qDebug() << "====== D is up";
+        skydiver->setSwingForce(0);
+    }
+
+    if(event->key() == Qt::Key_A)
+    {
+        skydiver->setSwingForce(0);
     }
 }

@@ -30,10 +30,23 @@ void Skydiver::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
     painter->drawPixmap(rect, pixmap(), rect);
 }
 
-void Skydiver::setSwingVx(double value)
+void Skydiver::setSwingForce(double value)
 {
-    skydiverODE->setSwingVx(value);
+    skydiverODE->setSwingForce(value);
 }
+
+void Skydiver::releaseParachute()
+{
+    setPixmap(QPixmap(":/Images/fallskjermhopper_player.png"));
+    setScale(0.05);
+    skydiverODE->setArea(20);
+    skydiverODE->setCd(1.4);
+}
+
+//void Skydiver::setSwingVx(double value)
+//{
+//    skydiverODE->setSwingVx(value);
+//}
 
 void Skydiver::advance(int phase)
 {
