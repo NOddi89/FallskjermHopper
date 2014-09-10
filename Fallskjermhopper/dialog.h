@@ -32,13 +32,6 @@ private:
 
     QGraphicsPixmapItem *backgroundItem;
     Skydiver *skydiver;
-   // WindProjectile *skydiver;
-
-    float skydiverStartXPos;
-    float skydiverStartAltitude;
-    double swingVxValues[4];
-
-    bool keyDown;
 
 protected:
     void keyPressEvent(QKeyEvent *event);

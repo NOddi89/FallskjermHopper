@@ -5,6 +5,7 @@
 Skydiver::Skydiver(double xPos, double altitude, double mass, double area, QPixmap icon)
 {   
     flyTime = 0;
+    parachuteReleased = false;
 
     //skydiverODE = new WindProjectile();
     skydiverODE = new SkydiverODE();
@@ -13,8 +14,8 @@ Skydiver::Skydiver(double xPos, double altitude, double mass, double area, QPixm
                             flyTime, mass, area,        //time, mass, area
                             1.225, 0.44, 0.0, 0.0 );    //density, cd, wind x, wind y
 
-    this->setPixmap(QPixmap(":/Images/fallskjermhopper_player_nopara.png"));
-    this->setScale(0.5);
+    this->setPixmap(QPixmap(":/Images/fallskjermhopper_nopara.png"));
+    this->setScale(0.15);
 
 }
 
@@ -37,10 +38,16 @@ void Skydiver::setSwingForce(double value)
 
 void Skydiver::releaseParachute()
 {
-    setPixmap(QPixmap(":/Images/fallskjermhopper_player.png"));
-    setScale(0.05);
+    setPixmap(QPixmap(":/Images/fallskjermhopper_player2.png"));
+    setScale(0.15);
     skydiverODE->setArea(20);
     skydiverODE->setCd(1.4);
+    parachuteReleased = true;
+}
+
+void Skydiver::isParachuteReleased()
+{
+    return parachuteReleased;
 }
 
 //void Skydiver::setSwingVx(double value)

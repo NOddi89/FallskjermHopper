@@ -26,10 +26,6 @@ Dialog::Dialog(QWidget *parent) :
 
     keyDown = false;
     swingTimer = new QTimer(this);
-    swingVxValues[0] = 0.5;
-    swingVxValues[1] = 0.9;
-    swingVxValues[2] = 1.5;
-    swingVxValues[3] = 2.3;
 
 
     timer = new QTimer(this);

@@ -14,6 +14,7 @@ public:
     //void setSwingVx(double value);
     void setSwingForce(double value);
     void releaseParachute();
+    void isParachuteReleased();
 
 protected:
     void advance(int phase);
@@ -24,6 +25,7 @@ private:
     SkydiverODE *skydiverODE;
 
     double flyTime;
+    bool parachuteReleased;
 };
 
 #endif // SKYDIVER_H
