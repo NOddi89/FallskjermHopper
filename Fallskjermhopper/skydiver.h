@@ -14,7 +14,7 @@ public:
     //void setSwingVx(double value);
     void setSwingForce(double value);
     void releaseParachute();
-    void isParachuteReleased();
+    bool isParachuteReleased();
 
 protected:
     void advance(int phase);

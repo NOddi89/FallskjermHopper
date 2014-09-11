@@ -6,6 +6,7 @@
 #include <QGraphicsPixmapItem>
 #include <QTimer>
 #include <QKeyEvent>
+#include <QtMath>
 
 #include <skydiver.h>
 
@@ -22,7 +23,11 @@ class Dialog : public QDialog
 
 public:
     explicit Dialog(QWidget *parent = 0);
+
     ~Dialog();
+
+private slots:
+    void startGame();
 
 private:
     Ui::Dialog *ui;
@@ -32,6 +37,8 @@ private:
 
     QGraphicsPixmapItem *backgroundItem;
     Skydiver *skydiver;
+
+    int maxLandingVelocity;
 
 protected:
     void keyPressEvent(QKeyEvent *event);

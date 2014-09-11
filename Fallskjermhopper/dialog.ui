@@ -13,6 +13,9 @@
   <property name="cursor">
    <cursorShape>ArrowCursor</cursorShape>
   </property>
+  <property name="acceptDrops">
+   <bool>false</bool>
+  </property>
   <property name="windowTitle">
    <string>Skydiver</string>
   </property>
@@ -47,9 +50,9 @@
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label">
+     <widget class="QLabel" name="label_radiusSliderValue">
       <property name="text">
-       <string>TextLabel</string>
+       <string>40</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -57,7 +60,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QSlider" name="horizontalSlider_radius">
+     <widget class="QSlider" name="slider_radius">
       <property name="minimum">
        <number>40</number>
       </property>
@@ -92,9 +95,9 @@
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_2">
+     <widget class="QLabel" name="label_weigthSliderValue">
       <property name="text">
-       <string>TextLabel</string>
+       <string>50</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -102,7 +105,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QSlider" name="horizontalSlider_weigth">
+     <widget class="QSlider" name="slider_weigth">
       <property name="minimum">
        <number>50</number>
       </property>
@@ -128,9 +131,9 @@
      </widget>
     </item>
     <item>
-     <widget class="QLabel" name="label_3">
+     <widget class="QLabel" name="label_velocitySliderValue">
       <property name="text">
-       <string>TextLabel</string>
+       <string>7</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignCenter</set>
@@ -138,7 +141,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QSlider" name="horizontalSlider_velocity">
+     <widget class="QSlider" name="slider_velocity">
       <property name="minimum">
        <number>7</number>
       </property>
@@ -196,15 +199,212 @@
    <property name="title">
     <string>Stats</string>
    </property>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Speed:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_2">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>20</y>
+      <width>21</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_3">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Altitude:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_4">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>40</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>2586</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_5">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>60</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Wind:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_6">
+    <property name="geometry">
+     <rect>
+      <x>90</x>
+      <y>60</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>3</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>20</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>m/s</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>40</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>m</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_10">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>60</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>m/s</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_11">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>60</y>
+      <width>46</width>
+      <height>13</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>&lt;----</string>
+    </property>
+   </widget>
   </widget>
+  <widget class="QLCDNumber" name="lcdNumber">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>-70</x>
+     <y>720</y>
+     <width>241</width>
+     <height>91</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="smallDecimalPoint">
+    <bool>true</bool>
+   </property>
+   <property name="digitCount">
+    <number>6</number>
+   </property>
+   <property name="segmentStyle">
+    <enum>QLCDNumber::Filled</enum>
+   </property>
+   <property name="value" stdset="0">
+    <double>24.000000000000000</double>
+   </property>
+   <property name="intValue" stdset="0">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>70</x>
+     <y>680</y>
+     <width>71</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Time</string>
+   </property>
+  </widget>
+  <zorder>graphicsView</zorder>
+  <zorder>groupBox</zorder>
+  <zorder>pushButton_start</zorder>
+  <zorder>pushButton_reset</zorder>
+  <zorder>groupBox_2</zorder>
+  <zorder>slider_weigth</zorder>
+  <zorder>lcdNumber</zorder>
+  <zorder>label_7</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
  <connections>
   <connection>
-   <sender>horizontalSlider_radius</sender>
+   <sender>slider_radius</sender>
    <signal>valueChanged(int)</signal>
-   <receiver>label</receiver>
+   <receiver>label_radiusSliderValue</receiver>
    <slot>setNum(int)</slot>
    <hints>
     <hint type="sourcelabel">
