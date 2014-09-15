@@ -56,6 +56,17 @@ Dialog::Dialog(QWidget *parent) :
 
 }
 
+void Dialog::displayEndGameMessage(QString s)
+{
+    endgameMessage = new QGraphicsTextItem(s);
+    endgameMessage->setFont(QFont("Times", 20, QFont::Bold));
+    QFontMetrics fm(endgameMessage->font());
+    int stringWidth = fm.width(endgameMessage->toPlainText());
+    int messageXPos = (backgroundItem->boundingRect().width() - stringWidth)/2;
+    endgameMessage->setPos(-395 + messageXPos, 0);
+    scene->addItem(endgameMessage);
+}
+
 void Dialog::timerEvent(QTimerEvent *)
 {
     qDebug() << "Timer event";
@@ -71,7 +82,8 @@ void Dialog::startGame()
     if(!timer->isActive())
     {
         QPixmap playerIcon(":/Images/fallskjermhopper_player_nopara.png");
-        skydiver = new Skydiver(0.0, 4000, ui->slider_weigth->value(), (3.14*qPow((ui->slider_radius->value())/100.0, 2)), playerIcon );
+        skydiver = new Skydiver(0, 200, ui->slider_weigth->value(), (3.14*qPow((ui->slider_radius->value())/100.0, 2)), playerIcon );
+        skydiver->setZValue(1);
         scene->addItem(skydiver);
 
         //Connections to skydiverODE
@@ -103,11 +115,10 @@ void Dialog::startGame()
         //Create a landing platform
 
         // random x pos:
-        int platformXPos;
         if(temp % 2)platformXPos = 1 + qrand() % 295;
         else platformXPos = (1 + qrand() % 395)*-1;
 
-        int platformYPos = 340;
+        platformYPos = 340;
         landingPlatform = new QGraphicsEllipseItem(platformXPos, platformYPos, 100, 40);
         landingPlatform->setBrush(QBrush(Qt::red));
         scene->addItem(landingPlatform);
@@ -129,6 +140,7 @@ void Dialog::resetGame()
         timeTaker->stop();
         delete skydiver;
         delete landingPlatform;
+        delete endgameMessage;
 
         ui->label_stats_altitude->setNum(0);
         ui->label_stats_speed->setNum(0);
@@ -154,30 +166,27 @@ void Dialog::endGame()
     timeTaker->stop();
 
     //check if we hit landing platform
+    qDebug() << landingPlatform->boundingRect().width();
+    int skydiverCurrX = skydiver->x() + 45;
+
     if(skydiver->getSkydiverODE()->getVelocity() > maxLandingVelocity)
     {
-        // u are dead try agien
-        qDebug() << "You Are DEAD! To high speed!";
+        displayEndGameMessage(QString("You Are DEAD! To high speed!!!!!!!!!!!!!!!!!"));
+    }
+    else if(skydiverCurrX > 395 || skydiverCurrX < -395)
+    {
+        displayEndGameMessage(QString("Did you fly away to Africa?"));
+    }
+
+    else if(skydiverCurrX >= platformXPos && skydiverCurrX <= platformXPos + landingPlatform->boundingRect().width())
+    {
+        displayEndGameMessage(QString("You landed safely. You are a true skydiver!"));
     }
     else
     {
-        if(skydiver->boundingRect().x() > 395 || skydiver->boundingRect().x() < -395)
-        {
-            // out of bounds
-            qDebug() << "Where did you go? Did you fly to Africa?"; // FEIL på denne
-        }
-        else if(qAbs(skydiver->boundingRect().x()) < qAbs(landingPlatform->x())
-                || qAbs(skydiver->boundingRect().x() > qAbs(landingPlatform->x()) + 100))
-        {
-            // dindt hit landng platform
-            qDebug() << "Close but try to hit the landing platform next time!";
-        }
-        else
-        {
-            //landed safe on the landing platform
-            qDebug() << "Congratulations!!! You are a true skydiver!";
-        }
+        displayEndGameMessage(QString("Almost, but try to hit the landingplatform next time"));
     }
+
 }
 
 

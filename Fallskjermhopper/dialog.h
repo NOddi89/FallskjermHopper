@@ -24,6 +24,7 @@ class Dialog : public QDialog
 
 public:
     explicit Dialog(QWidget *parent = 0);
+    void displayEndGameMessage(QString s);
 
 
     ~Dialog();
@@ -46,11 +47,14 @@ private:
     QGraphicsPixmapItem *backgroundItem;
     Skydiver *skydiver;
     QGraphicsEllipseItem *landingPlatform;
+    QGraphicsTextItem *endgameMessage;
 
     int maxLandingVelocity;
     int wind;
     int time;
     bool gameFinished;
+    int platformXPos;
+    int platformYPos;
 
 
 protected:

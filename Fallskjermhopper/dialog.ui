@@ -392,22 +392,5 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections>
-  <connection>
-   <sender>slider_radius</sender>
-   <signal>valueChanged(int)</signal>
-   <receiver>label_radiusSliderValue</receiver>
-   <slot>setNum(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>104</x>
-     <y>91</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>105</x>
-     <y>70</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
