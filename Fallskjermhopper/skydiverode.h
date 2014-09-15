@@ -5,25 +5,24 @@
 
 class SkydiverODE : public WindProjectile
 {
+    Q_OBJECT
 public:
-    SkydiverODE();
+    SkydiverODE(QObject *parent = 0);
 
     Q_INVOKABLE virtual double *getRightHandSide(double s, double q[], double deltaQ[],
                              double ds, double qScale) override;
 
-
-//    double getSwingVx() const;
-
-
     double getSwingForce() const;
     void setSwingForce(double value);
 
+signals:
+    void zPosChanged(int);
+    void vzChanged(int);
+    void atGround();
+
 private:
-    //    double swingVx;
     double swingForce;
 
-    //public slots:
-//    void setSwingVx(double value);
 };
 
 #endif // SKYDIVERODE_H

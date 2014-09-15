@@ -22,6 +22,8 @@ public:
     double getWindVy() const;
     void setWindVy(double value);
 
+signals:
+
 private:
     double windVx;
     double windVy;

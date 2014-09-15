@@ -2,14 +2,17 @@
 #include <QtMath>
 #include <QDebug>
 
-SkydiverODE::SkydiverODE()
+SkydiverODE::SkydiverODE(QObject *parent)
 {
-    //swingVx = 0.0;
+
 }
 
 double *SkydiverODE::getRightHandSide(double s, double q[], double deltaQ[], double ds, double qScale)
 {
     Q_UNUSED(s);
+
+    if(getZ() <= 0) emit atGround();
+
     double *dQ = new double[6];
     double *newQ = new double[6];
 
@@ -25,7 +28,7 @@ double *SkydiverODE::getRightHandSide(double s, double q[], double deltaQ[], dou
     // Compute the apparent velocities by subtracting the wind velocity
     // components from the projectile velocity components. We also subtract a velocity
     // if the player try to compensate for wind.
-    double vax = vx - getWindVx() ;//- swingVx;
+    double vax = vx - getWindVx();
     double vay = vy - getWindVy();
     double vaz = vz;
 
@@ -49,6 +52,9 @@ double *SkydiverODE::getRightHandSide(double s, double q[], double deltaQ[], dou
     dQ[4] = ds * (G + Fdz /getMass());
     dQ[5] = ds * vz;
 
+    emit zPosChanged((int)getZ());
+    emit vzChanged(getVelocity());
+
     return dQ;
 }
 double SkydiverODE::getSwingForce() const
@@ -61,14 +67,7 @@ void SkydiverODE::setSwingForce(double value)
     swingForce = value;
 }
 
-//double SkydiverODE::getSwingVx() const
-//{
-//    return swingVx;
-//}
 
-//void SkydiverODE::setSwingVx(double value)
-//{
-//    swingVx = value;
-//}
+
 
 

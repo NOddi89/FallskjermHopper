@@ -67,6 +67,7 @@ void SimpleProjectile::updateLocationAndVelocity(double dt)
     setQ(y, 3);
     setQ(z, 5);
     setQ(vz, 4);
+
 }
 
 // getRightHandSide() is abstract in ODE. SimpleProjectile does not solve

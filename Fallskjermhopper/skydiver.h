@@ -7,6 +7,7 @@
 
 class Skydiver : public QGraphicsPixmapItem
 {
+
 public:
     Skydiver(double xPos, double altitude, double mass, double area, QPixmap icon);
     QRectF boundingRect() const;
@@ -15,6 +16,14 @@ public:
     void setSwingForce(double value);
     void releaseParachute();
     bool isParachuteReleased();
+    void setArea(double a);
+    void setWindVx(double value);
+    ~Skydiver();
+
+    SkydiverODE *getSkydiverODE() const;
+
+    double getFlyTime() const;
+    void setFlyTime(double value);
 
 protected:
     void advance(int phase);
