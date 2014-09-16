@@ -94,6 +94,7 @@ void Dialog::startGame()
         connect(skydiver->getSkydiverODE(), SIGNAL(atGround()),
                 this, SLOT(endGame()));
 
+
         maxLandingVelocity = ui->slider_velocity->value();
 
         // Randow wind strength and direction
@@ -142,6 +143,7 @@ void Dialog::resetGame()
         delete landingPlatform;
         delete endgameMessage;
 
+
         ui->label_stats_altitude->setNum(0);
         ui->label_stats_speed->setNum(0);
         ui->label_stats_windValue->setNum(0);
@@ -166,7 +168,6 @@ void Dialog::endGame()
     timeTaker->stop();
 
     //check if we hit landing platform
-    qDebug() << landingPlatform->boundingRect().width();
     int skydiverCurrX = skydiver->x() + 45;
 
     if(skydiver->getSkydiverODE()->getVelocity() > maxLandingVelocity)
@@ -187,6 +188,11 @@ void Dialog::endGame()
         displayEndGameMessage(QString("Almost, but try to hit the landingplatform next time"));
     }
 
+}
+
+void Dialog::testSlot()
+{
+    qDebug() << "Test slot working";
 }
 
 

@@ -14,6 +14,8 @@ public:
 
     double getSwingForce() const;
     void setSwingForce(double value);
+    //Work around off qobject issues
+    void emitAtGround();
 
 signals:
     void zPosChanged(int);

@@ -7,12 +7,10 @@
 
 class Skydiver : public QGraphicsPixmapItem
 {
-
 public:
     Skydiver(double xPos, double altitude, double mass, double area, QPixmap icon);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    //void setSwingVx(double value);
     void setSwingForce(double value);
     void releaseParachute();
     bool isParachuteReleased();

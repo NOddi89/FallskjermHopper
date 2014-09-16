@@ -81,8 +81,11 @@ void Skydiver::advance(int phase)
     if(!phase) return;
 
 
+    if(skydiverODE->getZ() <= 0)skydiverODE->emitAtGround();
+
     flyTime += 0.03;
     skydiverODE->updateLocationAndVelocity(0.03);
+
 
     double zScale = (800.0 / 4000.0);
     double xScale = (0.5);

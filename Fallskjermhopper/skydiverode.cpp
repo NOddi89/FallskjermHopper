@@ -11,7 +11,7 @@ double *SkydiverODE::getRightHandSide(double s, double q[], double deltaQ[], dou
 {
     Q_UNUSED(s);
 
-    if(getZ() <= 0) emit atGround();
+    //if(getZ() <= 0) emit atGround();
 
     double *dQ = new double[6];
     double *newQ = new double[6];
@@ -65,6 +65,11 @@ double SkydiverODE::getSwingForce() const
 void SkydiverODE::setSwingForce(double value)
 {
     swingForce = value;
+}
+
+void SkydiverODE::emitAtGround()
+{
+    emit atGround();
 }
 
 

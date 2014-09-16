@@ -9,7 +9,7 @@
 #include <QTimerEvent>
 #include <QtMath>
 
-#include <skydiver.h>
+#include "skydiver.h"
 
 
 
@@ -34,6 +34,7 @@ private slots:
     void resetGame();
     void setTime();
     void endGame();
+    void testSlot();
 
 signals:
     void timeChanged(int);
