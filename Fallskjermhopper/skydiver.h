@@ -11,24 +11,26 @@ public:
     Skydiver(double xPos, double altitude, double mass, double area, QPixmap icon);
     QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+
     void setSwingForce(double value);
     void releaseParachute();
-    bool isParachuteReleased();
     void setArea(double a);
     void setWindVx(double value);
-    ~Skydiver();
+    void setFlyTime(double value);
 
     SkydiverODE *getSkydiverODE() const;
 
+    bool isParachuteReleased();
+
     double getFlyTime() const;
-    void setFlyTime(double value);
+
+    ~Skydiver();
 
 protected:
     void advance(int phase);
 
 private:
     QPixmap icon;
-    //WindProjectile *skydiverODE;
     SkydiverODE *skydiverODE;
 
     double flyTime;

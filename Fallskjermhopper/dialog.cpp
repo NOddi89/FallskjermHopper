@@ -79,10 +79,10 @@ Dialog::~Dialog()
 
 void Dialog::startGame()
 {
-    if(!timer->isActive())
+    if(!timer->isActive() && !gameFinished)
     {
         QPixmap playerIcon(":/Images/fallskjermhopper_player_nopara.png");
-        skydiver = new Skydiver(0, 200, ui->slider_weigth->value(), (3.14*qPow((ui->slider_radius->value())/100.0, 2)), playerIcon );
+        skydiver = new Skydiver(0, 4000, ui->slider_weigth->value(), (3.14*qPow((ui->slider_radius->value())/100.0, 2)), playerIcon );
         skydiver->setZValue(1);
         scene->addItem(skydiver);
 
@@ -139,6 +139,7 @@ void Dialog::resetGame()
     {
         timer->stop();
         timeTaker->stop();
+        time = 0;
         delete skydiver;
         delete landingPlatform;
         delete endgameMessage;
@@ -149,6 +150,8 @@ void Dialog::resetGame()
         ui->label_stats_windValue->setNum(0);
         ui->label_stats_windDirection->setText("");
         ui->lcdNumber->display(0);
+
+        gameFinished = false;
 
     }
 }
@@ -172,7 +175,7 @@ void Dialog::endGame()
 
     if(skydiver->getSkydiverODE()->getVelocity() > maxLandingVelocity)
     {
-        displayEndGameMessage(QString("You Are DEAD! To high speed!!!!!!!!!!!!!!!!!"));
+        displayEndGameMessage(QString("You Are DEAD! To high speed!!!!"));
     }
     else if(skydiverCurrX > 395 || skydiverCurrX < -395)
     {
@@ -188,11 +191,6 @@ void Dialog::endGame()
         displayEndGameMessage(QString("Almost, but try to hit the landingplatform next time"));
     }
 
-}
-
-void Dialog::testSlot()
-{
-    qDebug() << "Test slot working";
 }
 
 

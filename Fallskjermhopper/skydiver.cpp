@@ -80,7 +80,6 @@ void Skydiver::advance(int phase)
 {
     if(!phase) return;
 
-
     if(skydiverODE->getZ() <= 0)skydiverODE->emitAtGround();
 
     flyTime += 0.03;
